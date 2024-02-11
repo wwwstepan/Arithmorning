@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Arithmorning.MainPage"
+             xmlns:local="clr-namespace:Arithmorning"
+             x:Name="MainPageElement"
+             >
+
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView x:Name="MainScrollView" MinimumWidthRequest="300" MaximumWidthRequest="300">
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+
+            <Label Text="{Binding CountDown}" FontSize="28" IsVisible="{Binding GameIsActive}" />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Scores:" FontSize="28" />
+                <Label Text="{Binding Scores}" FontSize="28" Margin="5,0,0,0"  />
+            </StackLayout>
+            <Label Text="{Binding Challenge}" FontSize="36" IsVisible="{Binding GameIsActive}" />
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding GameIsActive}">
+                <Label Text="Answer:" FontSize="32" />
+                <Label Text="{Binding Answer}" FontSize="32" Margin="5,0,0,0"  />
+                <Label Text="{Binding WriteAnswer}" FontSize="32" Margin="5,0,0,0" IsVisible="{Binding ShowWriteAnswer}" TextColor="LightCoral" />
+            </StackLayout>
+
+            <Button Text="New game" HorizontalOptions="Fill" Command="{Binding StartGameCommand}" Style="{StaticResource controlButtonStyle}" />
+
+            <StackLayout Orientation="Vertical" IsVisible="{Binding GameIsActive}">
+                
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="7" Margin="5" Command="{Binding AddAnswerSymbolCommand}" CommandParameter="7" />
+                    <Button Text="8" Margin="5" Command="{Binding AddAnswerSymbolCommand}" CommandParameter="8" />
+                    <Button Text="9" Margin="5" Command="{Binding AddAnswerSymbolCommand}" CommandParameter="9" />
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="4" Margin="5" Command="{Binding AddAnswerSymbolCommand}" CommandParameter="4" />
+                    <Button Text="5" Margin="5" Command="{Binding AddAnswerSymbolCommand}" CommandParameter="5" />
+                    <Button Text="6" Margin="5" Command="{Binding AddAnswerSymbolCommand}" CommandParameter="6" />
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="1" Margin="5" Command="{Binding AddAnswerSymbolCommand}" CommandParameter="1" />
+                    <Button Text="2" Margin="5" Command="{Binding AddAnswerSymbolCommand}" CommandParameter="2" />
+                    <Button Text="3" Margin="5" Command="{Binding AddAnswerSymbolCommand}" CommandParameter="3" />
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="0" WidthRequest="100" Margin="5" Command="{Binding AddAnswerSymbolCommand}" CommandParameter="0" />
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Ok"  WidthRequest="75" Margin="5" Command="{Binding ProcessAnswerCommand}" Style="{StaticResource controlButtonStyle}" />
+                    <Button Text="Delete" WidthRequest="75" Margin="5" Command="{Binding ClearAnswerCommand}" Style="{StaticResource controlButtonStyle}" />
+                </StackLayout>
+
+            </StackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
