@@ -8,7 +8,8 @@ public partial class GameModel : ObservableObject
     private readonly Random rnd = new();
     private readonly Timer timer;
 
-    private int ScoresToWriteAnswer = 0;
+    [ObservableProperty]
+    private int _scoresToWriteAnswer = 0;
 
     [ObservableProperty]
     private int _countDown;
@@ -22,8 +23,7 @@ public partial class GameModel : ObservableObject
     [ObservableProperty]
     private string _challenge = string.Empty;
 
-    [ObservableProperty]
-    private int _writeAnswer = 0;
+    private int WriteAnswer = 0;
 
     public GameModel()
     {
@@ -88,6 +88,24 @@ public partial class GameModel : ObservableObject
             'x' => (arg1 * arg2, 7),
             _ => (0, 0)
         };
+
+        if (oper == '/' && arg2 > 10)
+            ScoresToWriteAnswer += 2;
+        else if (oper == 'x')
+        {
+            var dig11 = arg1 / 10;
+            var dig21 = arg2 / 10;
+            var dig12 = arg1 % 10;
+            var dig22 = arg2 % 10;
+
+            if (
+                (dig11 > 2 && dig11 < 8)
+                || (dig21 > 2 && dig21 < 8)
+                || (dig12 > 2 && dig12 < 8)
+                || (dig22 > 2 && dig22 < 8)
+            )
+                ScoresToWriteAnswer += 3;
+        }
 
         Challenge = $"{arg1} {oper} {arg2}";
     }

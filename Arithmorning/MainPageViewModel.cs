@@ -32,6 +32,9 @@ public partial class MainPageViewModel : ObservableObject
     [ObservableProperty]
     private int _writeAnswer = 0;
 
+    [ObservableProperty]
+    private int _scoresToWriteAnswer = 0;
+
     public MainPageViewModel()
     {
         _gameModel.PropertyChanged += GameModelPropertyChanged;
@@ -91,6 +94,9 @@ public partial class MainPageViewModel : ObservableObject
                 break;
             case "Scores":
                 Scores = _gameModel.Scores;
+                break;
+            case "ScoresToWriteAnswer":
+                ScoresToWriteAnswer = _gameModel.ScoresToWriteAnswer;
                 break;
             default: break;
         }
