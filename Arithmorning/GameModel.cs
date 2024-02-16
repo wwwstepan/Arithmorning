@@ -85,26 +85,21 @@ public partial class GameModel : ObservableObject
             '+' => (arg1 + arg2, 1),
             '-' => (arg1 - arg2, 1),
             '/' => (arg1 / arg2, 4),
-            'x' => (arg1 * arg2, 7),
+            'x' => (arg1 * arg2, 6),
             _ => (0, 0)
         };
 
         if (oper == '/' && arg2 > 10)
-            ScoresToWriteAnswer += 2;
+            ScoresToWriteAnswer += 3;
         else if (oper == 'x')
         {
-            var dig11 = arg1 / 10;
-            var dig21 = arg2 / 10;
-            var dig12 = arg1 % 10;
-            var dig22 = arg2 % 10;
+            var lastDig1 = arg1 % 10;
+            var lastDig2 = arg2 % 10;
 
-            if (
-                (dig11 > 2 && dig11 < 8)
-                || (dig21 > 2 && dig21 < 8)
-                || (dig12 > 2 && dig12 < 8)
-                || (dig22 > 2 && dig22 < 8)
+            if (lastDig1 > 2 && lastDig1 < 8 && lastDig1 != 5
+                && lastDig2 > 2 && lastDig2 < 8 && lastDig2 != 5
             )
-                ScoresToWriteAnswer += 3;
+                ScoresToWriteAnswer += 4;
         }
 
         Challenge = $"{arg1} {oper} {arg2}";

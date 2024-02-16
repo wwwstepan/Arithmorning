@@ -59,7 +59,6 @@
                     <Button Text="Ok"  WidthRequest="135" Margin="5" Command="{Binding ProcessAnswerCommand}" Style="{StaticResource controlButtonStyle}" />
                     <Button Text="Delete" WidthRequest="100" Margin="5" Command="{Binding ClearAnswerCommand}" Style="{StaticResource controlButtonStyle}" />
                 </StackLayout>
-
             </StackLayout>
 
         </VerticalStackLayout>
