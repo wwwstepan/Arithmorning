@@ -1,4 +1,5 @@
 # Arithmorning
+MAUI MVVM desktop & mobile app
 
 Игра-математический тренажер. 
 
