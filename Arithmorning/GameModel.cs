@@ -60,9 +60,16 @@ public partial class GameModel : ObservableObject
     }
 
     private void GenerateChallenge()
-    {        
-        int arg1 = rnd.Next(11, 99);
-        int arg2 = rnd.Next(11, 99);
+    {
+        int arg1, arg2;
+
+        do {
+            arg1= rnd.Next(11, 99);
+        } while (arg1 % 10 == 0);
+        do
+        {
+            arg2 = rnd.Next(11, 99);
+        } while (arg2 % 10 == 0);
 
         var oper = rnd.Next(0, 7) switch {
             0  => '+',
@@ -77,7 +84,10 @@ public partial class GameModel : ObservableObject
         }
         else if (oper == '/')
         {
-            arg2 = rnd.Next(3, 20);
+            do
+            {
+                arg2 = rnd.Next(3, 20);
+            } while (arg2 == 5 || arg2 == 10);
             arg1 = rnd.Next(11, 30) * arg2;
         }
 
@@ -90,7 +100,7 @@ public partial class GameModel : ObservableObject
         };
 
         if (oper == '/' && arg2 > 10)
-            ScoresToWriteAnswer += 3;
+            ScoresToWriteAnswer += 2;
         else if (oper == 'x')
         {
             var lastDig1 = arg1 % 10;
@@ -99,7 +109,7 @@ public partial class GameModel : ObservableObject
             if (lastDig1 > 2 && lastDig1 < 8 && lastDig1 != 5
                 && lastDig2 > 2 && lastDig2 < 8 && lastDig2 != 5
             )
-                ScoresToWriteAnswer += 4;
+                ScoresToWriteAnswer += 3;
         }
 
         Challenge = $"{arg1} {oper} {arg2}";

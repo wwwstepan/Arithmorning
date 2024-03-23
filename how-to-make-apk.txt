@@ -1,0 +1,6 @@
+﻿build Release
+Start type Android emulator - menu:[build] - [publish selection]
+publish - [distribute] [ad hoc]
+signing - select or create if list is empty - [save as] - enter password - Get apk!
+
+
